@@ -54,41 +54,10 @@
         </el-form-item>
 
         <el-form-item>
-          <div class="disclaimer-section">
-            <el-checkbox v-model="disclaimerAgreed" class="disclaimer-checkbox">
-              <span class="disclaimer-label">
-                我已阅读并同意
-                <a class="disclaimer-toggle" @click.prevent="disclaimerExpanded = !disclaimerExpanded">
-                  《免责声明》
-                  <el-icon class="toggle-icon" :class="{ expanded: disclaimerExpanded }">
-                    <ArrowDown />
-                  </el-icon>
-                </a>
-              </span>
-            </el-checkbox>
-            <transition name="fade">
-              <div v-if="disclaimerExpanded" class="disclaimer-detail">
-                <p class="disclaimer-title">⚠️ 免责声明</p>
-                <p>本平台所收录内容均为已公开的 Nday 漏洞信息，来源于互联网公开渠道，仅供安全研究、技术学习和漏洞修复参考使用。</p>
-                <ol class="disclaimer-list">
-                  <li>本平台不提供任何 0day 漏洞、未公开漏洞情报或攻击服务</li>
-                  <li>本平台不鼓励、不支持任何形式的非法渗透测试或网络攻击行为</li>
-                  <li>使用者应遵守《中华人民共和国网络安全法》《中华人民共和国刑法》等相关法律法规</li>
-                  <li>任何未经授权对他人系统进行测试的行为均属违法，后果由使用者自行承担</li>
-                  <li>如发现本平台内容存在侵权，请联系管理员删除</li>
-                </ol>
-                <p class="disclaimer-agreement">使用本平台即表示您已阅读并同意上述声明。</p>
-              </div>
-            </transition>
-          </div>
-        </el-form-item>
-
-        <el-form-item>
           <el-button
             type="primary"
             size="large"
             :loading="loading"
-            :disabled="!disclaimerAgreed"
             class="login-btn"
             @click="handleLogin"
           >
@@ -122,8 +91,7 @@ const formRef = ref<FormInstance>()
 const loading = ref(false)
 const captchaImg = ref('')
 const captchaId = ref('')
-const disclaimerAgreed = ref(false)
-const disclaimerExpanded = ref(false)
+
 
 const form = reactive({
   username: '',
@@ -151,8 +119,7 @@ async function refreshCaptcha() {
 }
 
 async function handleLogin() {
-  if (!disclaimerAgreed.value) {
-    ElMessage.warning('请先阅读并同意免责声明')
+  if (false) {
     return
   }
   const valid = await formRef.value?.validate().catch(() => false)
@@ -258,62 +225,6 @@ onMounted(() => {
   border-radius: 8px;
 }
 
-.disclaimer-section {
-  width: 100%;
-}
-
-.disclaimer-checkbox {
-  height: auto;
-}
-
-.disclaimer-label {
-  font-size: 13px;
-  color: #606266;
-  line-height: 1.5;
-}
-
-.disclaimer-toggle {
-  color: #0071E3;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.toggle-icon {
-  font-size: 12px;
-  transition: transform 0.2s;
-
-  &.expanded {
-    transform: rotate(180deg);
-  }
-}
-
-.disclaimer-detail {
-  margin-top: 10px;
-  padding: 12px 14px;
-  background: #F5F5F7;
-  border-radius: 8px;
-  font-size: 13px;
-  line-height: 1.7;
-  color: #1D1D1F;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
 .login-footer {
   text-align: center;
   margin-top: 24px;
@@ -327,25 +238,5 @@ onMounted(() => {
     text-decoration: underline;
   }
 }
-.disclaimer-title {
-  font-weight: 600;
-  margin: 0 0 8px;
-  color: #303133;
-}
 
-.disclaimer-list {
-  margin: 8px 0;
-  padding-left: 20px;
-}
-
-.disclaimer-list li {
-  margin-bottom: 4px;
-  line-height: 1.6;
-}
-
-.disclaimer-agreement {
-  margin-top: 10px;
-  font-weight: 500;
-  color: #303133;
-}
 </style>

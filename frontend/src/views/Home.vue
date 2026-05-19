@@ -8,21 +8,7 @@
 
     <!-- ② 免责声明 -->
     <section class="disclaimer">
-      <div class="disclaimer-header">
-        <div class="disclaimer-icon">⚠️</div>
-        <p class="disclaimer-title">免责声明</p>
-      </div>
-      <p class="disclaimer-text">
-        本平台所收录内容均为已公开的 Nday 漏洞信息，来源于互联网公开渠道，仅供安全研究、技术学习和漏洞修复参考使用。
-      </p>
-      <ol class="disclaimer-list">
-        <li>本平台不提供任何 0day 漏洞、未公开漏洞情报或攻击服务</li>
-        <li>本平台不鼓励、不支持任何形式的非法渗透测试或网络攻击行为</li>
-        <li>使用者应遵守《中华人民共和国网络安全法》《中华人民共和国刑法》等相关法律法规</li>
-        <li>任何未经授权对他人系统进行测试的行为均属违法，后果由使用者自行承担</li>
-        <li>如发现本平台内容存在侵权，请联系管理员删除</li>
-      </ol>
-      <p class="disclaimer-agreement">使用本平台即表示您已阅读并同意上述声明。</p>
+      <p class="disclaimer-text">本系统仅供学习研究使用，请遵守相关法律法规。</p>
     </section>
 
     <!-- ③ 统计卡片 -->
@@ -227,32 +213,14 @@ $radius-sm: 10px;
 .disclaimer {
   margin: 0 auto 44px;
   max-width: 100%;
-  padding: 24px 28px;
+  padding: 16px 28px;
   background: $bg-disclaimer;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid $border-disclaimer;
   border-radius: $radius-lg;
   box-shadow: $shadow-glass;
-}
-
-.disclaimer-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.disclaimer-icon {
-  font-size: 20px;
-  flex-shrink: 0;
-}
-
-.disclaimer-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #9A7B2E;
-  margin: 0;
+  text-align: center;
 }
 
 .disclaimer-text {
@@ -260,27 +228,8 @@ $radius-sm: 10px;
   font-weight: 400;
   color: #9A7B2E;
   line-height: 1.7;
-  margin: 0 0 10px;
-  letter-spacing: 0.1px;
-}
-
-.disclaimer-list {
-  margin: 0 0 10px;
-  padding-left: 20px;
-  font-size: 13px;
-  color: #9A7B2E;
-  line-height: 1.8;
-}
-
-.disclaimer-list li {
-  margin-bottom: 2px;
-}
-
-.disclaimer-agreement {
-  font-size: 13px;
-  font-weight: 500;
-  color: #9A7B2E;
   margin: 0;
+  letter-spacing: 0.1px;
 }
 
 // ── ③ Stats ──
