@@ -67,6 +67,15 @@ chmod +x deploy.sh
   🏠 首页:     http://your-ip
 ```
 
+<img width="2225" height="1072" alt="image" src="https://github.com/user-attachments/assets/adff598d-906b-420c-8a22-7644d864014c" />
+
+<img width="2496" height="1266" alt="image" src="https://github.com/user-attachments/assets/85ac68cf-a4e6-4f68-ad11-5f2b407785d6" />
+
+<img width="2519" height="1207" alt="image" src="https://github.com/user-attachments/assets/0e3c3035-099c-4f70-9259-084edcf754e7" />
+
+<img width="2473" height="1190" alt="image" src="https://github.com/user-attachments/assets/0049f32f-5458-46fd-9abb-2077e14fb6c0" />
+
+
 ### 手动部署
 
 ```bash
