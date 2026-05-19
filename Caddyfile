@@ -1,0 +1,55 @@
+:80 {
+    encode gzip
+
+    # 健康检查
+    handle /health {
+        reverse_proxy litewiki:8080 {
+            header_up X-Forwarded-For {http.request.header.X-Forwarded-For}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # BFF API（前端专用）
+    handle /bff/* {
+        reverse_proxy litewiki:8080 {
+            header_up X-Forwarded-For {http.request.header.X-Forwarded-For}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # Admin API
+    handle /api/* {
+        reverse_proxy litewiki:8080 {
+            header_up X-Forwarded-For {http.request.header.X-Forwarded-For}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # 上传文件
+    handle /uploads/* {
+        reverse_proxy litewiki:8080 {
+            header_up X-Forwarded-For {http.request.header.X-Forwarded-For}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # 管理后台 + 前台文档（统一 Vue SPA）
+    handle_path /admin/* {
+        root * /srv/admin
+        try_files {path} /index.html
+        file_server
+    }
+
+    # 文档查看路由 /doc/:id → SPA
+    handle /doc/* {
+        root * /srv/admin
+        try_files {path} /index.html
+        file_server
+    }
+
+    # 默认路由 → 登录页
+    @default {
+        not path /health /bff/* /api/* /uploads/* /admin/* /doc/*
+    }
+    redir @default /admin/login permanent
+}

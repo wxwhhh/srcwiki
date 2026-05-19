@@ -1,0 +1,36 @@
+services:
+  litewiki:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: litewiki-app
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data/db:/app/db
+      - ./data/uploads:/app/uploads
+      - ./data/frontend:/srv/admin
+    environment:
+      - DB_PATH=/app/db/litewiki.db
+      - PORT=8080
+      - GIN_MODE=release
+      - UPLOAD_DIR=/app/uploads
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: litewiki-caddy
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${HTTP_PORT:-8080}:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./data/frontend:/srv/admin:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      litewiki:
+        condition: service_started
+
+volumes:
+  caddy_data:
+  caddy_config:
